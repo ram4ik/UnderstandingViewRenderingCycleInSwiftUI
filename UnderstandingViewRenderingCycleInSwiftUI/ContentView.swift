@@ -7,8 +7,14 @@
 
 import SwiftUI
 
+struct ContentViewModel: Equatable {
+    var name: String = ""
+    var age: Int = 0
+}
+
 struct ContentView: View {
     
+    @State private var vm = ContentViewModel()
     @State private var counter: Int = 0
     
     var body: some View {
@@ -21,6 +27,10 @@ struct ContentView: View {
                 Text("Increment")
             })
         }
+        .onChange(of: vm, perform: { value in
+            print(value)
+            vm.age = 42
+        })
     }
 }
 
